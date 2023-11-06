@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>Prueba</p>
+    <p class = "bg-red-500">Prueba</p>
   </div>
 </template>
 
