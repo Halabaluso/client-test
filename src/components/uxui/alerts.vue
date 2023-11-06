@@ -1,7 +1,7 @@
 <template>
   <div v-if="props.show" class="toast">
     <div class="alert" :class="props.css">
-      <span>{{msg}}</span>
+      <p>{{msg}}</p>
     </div>
   </div>
 </template>

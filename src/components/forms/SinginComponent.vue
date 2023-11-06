@@ -1,18 +1,18 @@
 <template>
-    <form @submit="singInFunction($event)" class="shadow-lg p-5 rounded-lg">
+    <form @submit="singInFunction($event)" class="shadow-lg p-5 rounded-lg" id = "signin">
         <LoadComponent :isLoading = data.loading />
         <ShowAlert :msg = data.msgalert :css = data.cssalert :show = data.booleanalert />
-        <h1 class="font-bold text-xl mb-5"><i class="fa-solid fa-user"></i> Sing In</h1>
+        <h1 id = "signintittle" class="font-bold text-xl mb-5"><i class="fa-solid fa-user"></i> Sing In</h1>
         <div>
             <label class="text-xs italic">User</label>
-            <input type="text" placeholder="mail@mail.com" class="input input-bordered w-full max-w-xs" />
+            <input id="username" v-model="data.username" type="text" placeholder="mail@mail.com" class="input input-bordered w-full max-w-xs" />
         </div>
         <div>
             <label class="text-xs italic">Password</label>
-            <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+            <input id="userpassword" type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
         </div>
         <div id = "actions" class="mt-5">
-            <button type="submit" class="btn btn-primary m-1 ml-0">Sing In</button>
+            <button id = "action" type="submit" class="btn btn-primary m-1 ml-0">Sing In</button>
             <router-link to = "/" class="btn m-1">Register</router-link>
         </div>
     </form>
@@ -24,6 +24,7 @@ import ShowAlert from "../uxui/alerts.vue"
 import { connectDB } from "../../db/connect"
 import { reactive } from "vue"
 import { userstore } from "../../stores/client"
+import { useRouter } from "vue-router"
 const data = reactive({
     username: "",
     password: "adminadmin",
@@ -32,6 +33,8 @@ const data = reactive({
     booleanalert: false,
     msgalert : "",
     cssalert: "",
+
+    router: useRouter()
 })
 
 
@@ -47,6 +50,7 @@ const singInFunction = async (e) => {
             console.log(userobject)
             if(userobject.err === false){
                 showAlert("Usuario encontrado.", "alert-info")
+                data.router.push("/home/" + userobject.data.user_id)
             }else{
                 showAlert("Usuario no encontrado.", "alert-error")
             }
@@ -74,7 +78,7 @@ const takeUserData = (arrow) => {
 const validateForm = () => {
     let validate = false
     if(data.username.length < 3 || data.password.length < 3){
-        showAlert("Campos vacios o demasiado cortos", "alert-error")
+        showAlert("Campos vacios o demasiado cortos.", "alert-error")
     }else{
         validate = true
     }

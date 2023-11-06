@@ -9,7 +9,10 @@ const router = createRouter({
     {
       path: '/',
       name: 'singin',
-      component: SingInView
+      component: SingInView,
+      meta: {
+        transitions: "slide-left"
+      }
     },
     {
       path: '/register',
@@ -17,9 +20,12 @@ const router = createRouter({
       component: RegisterView
     },
     {
-      path: '/home',
+      path: '/home/:id',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: {
+        transitions: "slide-left"
+      }
     },
   ]
 })

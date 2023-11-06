@@ -17,21 +17,22 @@ import { defineStore } from "pinia"
 const userstore = defineStore("userstore", {
   state: () => {
     return{
-      userobject: {}
+      userobject: {
+        err: true,
+        data: {}
+      }
     }
   },
   actions:{
     takeDataClient(clients, email){
       let object = {
-        err: false,
+        err: true,
         data: {}
       }
       clients.forEach(element => {
         if(element.email === email){
           object.data = element
-          this.userobject = object
-        }else{
-          object.err = true
+          object.err = false
           this.userobject = object
         }
       })
