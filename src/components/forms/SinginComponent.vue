@@ -26,7 +26,7 @@ import { reactive } from "vue"
 import { userstore } from "../../stores/client"
 import { useRouter } from "vue-router"
 const data = reactive({
-    username: "",
+    username: "test@test.com",
     password: "adminadmin",
 
     loading: false,

@@ -45,7 +45,7 @@
       </ul>
     </div>
     <div class="navbar-end">
-      <button onclick="my_modal_1.showModal()" class="btn btn-primary">New client <i class="fa-solid fa-plus"></i></button>
+      <button id = "newclientheader" onclick="my_modal_1.showModal()" class="btn btn-primary">New client <i class="fa-solid fa-plus"></i></button>
     </div>
 
     <!--Modal botón crear cliente-->

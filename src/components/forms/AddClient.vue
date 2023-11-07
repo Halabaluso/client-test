@@ -8,22 +8,22 @@
         <form @submit="sendDataStore($event)" class="py-4">
             <div class="mb-2">
                 <label class="text-xs italic">User</label>
-                <input v-model="data.name" type="text" placeholder="mail@mail.com" class="input input-bordered w-full" />
+                <input id = "nameclient" v-model="data.name" type="text" placeholder="mail@mail.com" class="input input-bordered w-full" />
             </div>
             <div class="mb-2">
                 <label class="text-xs italic">Lastname</label>
-                <input v-model="data.lastname" type="text" placeholder="mail@mail.com" class="input input-bordered w-full" />
+                <input id = "lastnameclient" v-model="data.lastname" type="text" placeholder="mail@mail.com" class="input input-bordered w-full" />
             </div>
             <div class="mb-2">
                 <label class="text-xs italic">Phone</label>
-                <input v-model="data.number" type="number" placeholder="mail@mail.com" class="input input-bordered w-full" />
+                <input id = "numberclient" v-model="data.number" type="number" placeholder="mail@mail.com" class="input input-bordered w-full" />
             </div>
             <div class="mb-2">
                 <label class="text-xs italic">Address</label>
-                <input v-model="data.address" type="text" placeholder="mail@mail.com" class="input input-bordered w-full" />
+                <input id = "addressclient" v-model="data.address" type="text" placeholder="mail@mail.com" class="input input-bordered w-full" />
             </div>
             <div class="mt-5 flex flex-col justify-end">
-                <button type="submit" class="btn btn-primary">Create client <i class="fa-solid fa-plus"></i></button>
+                <button type="submit" id = "addclientaction" class="btn btn-primary">Create client <i class="fa-solid fa-plus"></i></button>
             </div>
         </form>
     </div> 
