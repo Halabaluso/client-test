@@ -1,6 +1,7 @@
 <template>
     <div class="w-full my-5">
-        <div v-if="client.arrowsearchlen" class="overflow-x-auto w-full">
+        <p class="text-primary"><i class="fa-solid fa-magnifying-glass"></i> Search clients list</p>
+        <div v-if="client.arrowsearchlen !== 0" class="overflow-x-auto w-full">
             <table class="table">
                 <!-- head -->
                 <thead>

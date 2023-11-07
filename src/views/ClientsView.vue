@@ -4,8 +4,8 @@
       <HeaderComponent/>
       <div class="m-5">
         <SearchForm/>
-        <ListComponent/>
         <ListSearchComponent/>
+        <ListComponent/>
       </div>
     </div>
     <FooterComponent/>

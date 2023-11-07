@@ -14,11 +14,14 @@ const clientsStore = defineStore("clientsstore", {
     actions:{
         async loadClients(where){
             const data = await loadData(where)
-            takeLengthObject1(data)
+            if(data !== null){
+                this.arrow = data
+            }
+            this.takeLengthObject1(data)
         },
         async pushclient(client){
             const dbconnect = await writeData("client", client)
-            this.arrow.push(client)
+            this.loadClients("client")
             return dbconnect
         },
         async searchClient(where, what){
@@ -45,14 +48,14 @@ const clientsStore = defineStore("clientsstore", {
         },
         takeLengthObject(element){
             if(element !== null){
-                this.arrowsearchlen = Object.values(element)   
+                this.arrowsearchlen = Object.values(element).length
             }else{
                 this.arrowsearchlen = 0
             }
-        }
+        },
         takeLengthObject1(element){
             if(element !== null){
-                this.arrowlen = Object.values(element)   
+                this.arrowlen = Object.values(element).length
             }else{
                 this.arrowslen = 0
             }
