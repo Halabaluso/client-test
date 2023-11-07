@@ -1,26 +1,27 @@
-import { getDatabase, ref, set } from "firebase/database";
-import { getDatabase, ref, push, set } from "firebase/database";
+import { getDatabase, ref, push, set, equalTo,get , query, orderByChild, child } from "firebase/database";
 
-async function writeUserData(where, id, object) {
-    let boolean = false
-  const db = getDatabase();
-  await set(ref(db, where + '/' + id), object)
-    .then(() => {
-        boolean = true
-    })
-    .catch(() => {
-        boolean = false
-    })
+async function loadData(querystring){
+    let data = null
+    const dbRef = ref(getDatabase());
+    await get(child(dbRef, querystring)).then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log("Pasa :D")
+        data = snapshot.val();
+      } else {
+        data = null
+      }
+    }).catch((error) => {
+      data = null
+    });
 
-    return boolean
+    return data
 }
 
-
-async function writeData(query, object){
+async function writeData(querystring, object){
     // Send data to the server
     let boolean = false
     const db = getDatabase();
-    const postListRef = ref(db, query);
+    const postListRef = ref(db, querystring);
     const newPostRef = push(postListRef);
     await set(newPostRef, object)
     .then(() => {
@@ -30,4 +31,17 @@ async function writeData(query, object){
         boolean = false
     })
     return boolean
+}
+
+async function filterData(querystring, where, what){
+        // Send data to the server
+        const db = getDatabase()
+        const topUserPostsRef = await get(query(ref(db, querystring ), orderByChild(where), equalTo(what)))
+        return topUserPostsRef
+}
+
+export {
+    writeData,
+    filterData,
+    loadData
 }

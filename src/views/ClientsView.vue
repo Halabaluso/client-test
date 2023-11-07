@@ -3,7 +3,9 @@
     <div class="flex-1">
       <HeaderComponent/>
       <div class="m-5">
+        <SearchForm/>
         <ListComponent/>
+        <ListSearchComponent/>
       </div>
     </div>
     <FooterComponent/>
@@ -11,6 +13,8 @@
 </template>
 
 <script setup>
+import ListSearchComponent from "../components/lists/UserListSearchComponent.vue"
+import SearchForm from "../components/forms/SearchComponent.vue"
 import FooterComponent from "../components/header/HeaderComponent.vue"
 import HeaderComponent from "../components/menu/HeaderComponent.vue"
 import ListComponent from "../components/lists/UserListComponent.vue"

@@ -40,8 +40,8 @@ import { reactive } from "vue"
 
 const clients = clientsStore()
 const data = reactive({
-    name : "Daniel",
-    lastname: "Martín Díaz",
+    name : "",
+    lastname: "",
     address: "",
     number : 0,
 
@@ -55,6 +55,10 @@ const sendDataStore = (e) => {
     if(validateForm()){
         const object = createClient()
         clients.pushclient(object)
+        data.name = ""
+        data.lastname = ""
+        data.address = ""
+        data.number = 0
         showAlert("Cliente nuevo añadido.", "alert-info")
     }else{
         showAlert("Campos vacíos o demasiado cortos.", "alert-error")
@@ -63,9 +67,9 @@ const sendDataStore = (e) => {
 
 const createClient = () => {
     const object = {
-        name: data.name,
-        lastname: data.lastname,
-        address: data.address,
+        name: data.name.toUpperCase(),
+        lastname: data.lastname.toUpperCase(),
+        address: data.address.toUpperCase(),
         number: data.number
     }
     return object
