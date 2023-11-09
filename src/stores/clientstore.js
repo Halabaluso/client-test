@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
-import { writeData, filterData, loadData } from "../db/firebasemethods"
+import { writeData, filterData, loadData, removeData, updateData } from "../db/firebasemethods"
 
 const clientsStore = defineStore("clientsstore", {
     state: () => {
@@ -8,7 +8,10 @@ const clientsStore = defineStore("clientsstore", {
             arrowsearch: [],
 
             arrowsearchlen: 0,
-            arrowlen: 0
+            arrowlen: 0,
+
+            idClient: "",
+            objectClient: {}
         }
     },
     actions:{
@@ -16,8 +19,10 @@ const clientsStore = defineStore("clientsstore", {
             const data = await loadData(where)
             if(data !== null){
                 this.arrow = data
+                this.arrowsearch = {}
             }
             this.takeLengthObject1(data)
+            this.takeLengthObject(this.arrowsearch)
         },
         async pushclient(client){
             const dbconnect = await writeData("client", client)
@@ -30,21 +35,21 @@ const clientsStore = defineStore("clientsstore", {
             this.takeLengthObject(dbconnect.val())
             return dbconnect.val()
         },
-        modifyclient(id, object){
-            this.arrow.forEach((element,i) => {
-                if(element.id === id){
-                    this.arrow[i] = object
-                }
-            })
+        async modifyclient(id, object){
+            const dbconnect = await updateData(`client/${id}`, object)
+            this.loadClients("client")
+            return dbconnect
         },
-        deleteclient(id){
-            let newarrow = []
-            this.arrow.forEach(element => {
-                if(element.id !== id){
-                    newarrow.push(element)
-                }
-            })
-            this.arrow = newarrow
+        async deleteclient(id){
+            const data = await removeData(`client/${id}`)
+            await this.loadClients("client")
+            return data
+        },
+        takeIdClient(id){
+            this.idClient = id
+        },
+        takeObjectClient(object){
+            this.objectClient = object
         },
         takeLengthObject(element){
             if(element !== null){

@@ -1,4 +1,4 @@
-import { url, firebaseConfig } from '../src/variables/secret'
+import { firebaseConfig } from '../src/variables/secret'
 
 import './assets/main.css'
 

@@ -8,11 +8,15 @@
         <ListComponent/>
       </div>
     </div>
+    <ModalDeleteClient/>
+    <ModalModifyClient/>
     <FooterComponent/>
   </div>
 </template>
 
 <script setup>
+import ModalModifyClient from "../components/forms/ModifyClientComponent.vue"
+import ModalDeleteClient from "../components/forms/DeleteClientComponent.vue"
 import ListSearchComponent from "../components/lists/UserListSearchComponent.vue"
 import SearchForm from "../components/forms/SearchComponent.vue"
 import FooterComponent from "../components/header/HeaderComponent.vue"

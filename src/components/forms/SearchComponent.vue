@@ -17,7 +17,7 @@ const data = reactive({
     search: "",
     msgalert: "",
     cssalert: "",
-    booleanalert: ""
+    booleanalert: false
 })
 
 const searchClient = async (e) => {
